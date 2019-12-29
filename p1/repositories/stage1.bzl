@@ -85,7 +85,7 @@ def _bazel_toolchains_repositories():
         ],
     )
 
-def repositories():
+def stage1():
     _bazel_toolchains_repositories()
     _boost_repositories()
     _or_tools_repositories()
