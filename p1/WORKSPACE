@@ -1,0 +1,54 @@
+workspace(name = "p1")
+
+########################################
+# bazel_tools
+########################################
+#
+# These rules are included as part of Bazel.
+# Reference: https://github.com/bazelbuild/bazel
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
+
+########################################
+# p1_repositories
+########################################
+#
+# This rule configures the following repositories:
+# * bazel_toolchains: https://github.com/bazelbuild/bazel-toolchains
+# * boost
+
+load("//repositories:repositories.bzl", p1_repositories = "repositories")
+
+p1_repositories()
+
+########################################
+# bazel_toolchains_repositories
+########################################
+#
+# This rule configures the following repositories:
+# * io_bazel_rules_docker: https://github.com/bazelbuild/rules_docker
+# * bazel_skylib: https://github.com/bazelbuild/bazel-skylib
+# * bazel_gpg: https://bazel.build/bazel-release.pub.gpg
+
+load(
+    "@bazel_toolchains//repositories:repositories.bzl",
+    bazel_toolchains_repositories = "repositories",
+)
+
+bazel_toolchains_repositories()
+
+########################################
+# docker_toolchain_configure
+########################################
+#
+# This call is optional but should go before container_repositories
+# which will otherwise provide a default.
+
+load(
+    "@io_bazel_rules_docker//toolchains/docker:toolchain.bzl",
+    docker_toolchain_configure = "toolchain_configure",
+)
+
+docker_toolchain_configure(
+    name = "docker_config",
+)
