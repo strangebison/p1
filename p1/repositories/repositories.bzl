@@ -41,8 +41,8 @@ def _opencv_repositories():
     )
 
 def _bazel_toolchains_repositories():
-    version = "0.29.8"
-    sha256 = "b0c426d36826554f34e433e96dbd9b271e7f5b248a750f080a12534dcb944f48"
+    version = "2.0.0"
+    sha256 = "e2126599d29f2028e6b267eba273dcc8e7f4a35ff323e9600cf42fb03875b7c6"
 
     # https://releases.bazel.build/bazel-toolchains.html
     # https://github.com/bazelbuild/bazel-toolchains
